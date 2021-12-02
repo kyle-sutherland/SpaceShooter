@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TripleShotPowerup : MonoBehaviour
+public class Powerup : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 8f;
-
-    private SpawnManager _spawnManager;
+    [SerializeField]
+    private int powerupID;
 
     // Start is called before the first frame update
     void Start()
     {
-        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        if (_spawnManager == null)
-        {
-            Debug.LogError("_spawnManager is NULL");
-        }
+        
     }
 
     // Update is called once per frame
@@ -38,9 +34,23 @@ public class TripleShotPowerup : MonoBehaviour
 
             Player player = other.transform.GetComponent<Player>();
 
-            if (player != null)
+            switch (powerupID)
             {
-                player.ActivateTripleShot(true);
+                case 0:
+                    player.ActivateTripleShot(true);
+                    Debug.Log("player collected TripleShot");
+                    break;
+                case 1:
+                    player.ActivateSpeedBoost(true);
+                    Debug.Log("player collected SpeedBoost");
+                    break;
+                case 2:
+                    //player.ActivateShield(true);
+                    Debug.Log("player Collected Shield");
+                    break;
+                default:
+                    Debug.Log("player collected DefaultPowerup");
+                    break;
             }
 
             Destroy(this.gameObject);
@@ -50,11 +60,8 @@ public class TripleShotPowerup : MonoBehaviour
         {
             Debug.Log("powerup hit Laser");
 
-            Destroy(other.gameObject);
-            Destroy(this.gameObject);
+            //Destroy(other.gameObject);
+            //Destroy(this.gameObject);
         }
-
     }
-
-   
 }

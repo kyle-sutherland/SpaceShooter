@@ -13,7 +13,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _spawnEnemy;
     [SerializeField]
-    private GameObject _spawnPowerup;
+    private GameObject[] powerups;
     [SerializeField]
     private GameObject _enemyContainer;
     [SerializeField]
@@ -46,7 +46,8 @@ public class SpawnManager : MonoBehaviour
     {
         while (!stopSpawn)
         {
-            GameObject newSpawn = Instantiate(_spawnPowerup, SetSpawnPosition(), Quaternion.identity);
+            int randomPowerup = Random.Range(0, 2);
+            GameObject newSpawn = Instantiate(powerups[randomPowerup], SetSpawnPosition(), Quaternion.identity);
             if (newSpawn.tag == "Powerup")
             {
                 newSpawn.transform.parent = _powerupContainer.transform;

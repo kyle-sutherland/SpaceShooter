@@ -46,11 +46,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawnTimer: 5
-  powerupSpawnTimer: 5
+  powerupTimerLow: 6
+  powerupTimerHi: 10
   _spawnEnemy: {fileID: 4568728233913555189, guid: 71eccece544825b48be11390f5f1bb06,
     type: 3}
-  _spawnPowerup: {fileID: 5628319981124413212, guid: 1ab567a91067685408a6c09a382d78dd,
-    type: 3}
+  powerups:
+  - {fileID: 5628319981124413212, guid: 1ab567a91067685408a6c09a382d78dd, type: 3}
+  - {fileID: 9144313368817739409, guid: 6e84c36b0b1b36f438244927298d30e7, type: 3}
+  - {fileID: 0}
   _enemyContainer: {fileID: 6587531775648269039}
   _powerupContainer: {fileID: 8139381845826786897}
 --- !u!1 &6587531775648269039

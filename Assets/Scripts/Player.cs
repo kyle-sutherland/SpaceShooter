@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float tripleShotPowerDownTime = 5f;
     [SerializeField]
+    private float speedBoostModifier = 2f;
+    [SerializeField]
+    private float speedBoostPowerDownTime = 5f;
+    [SerializeField]
     private Vector3 _projectileSpawnPosition = new Vector3(0, 0.7f, 0);
     [SerializeField]
     private float _fireSpeed = 0.2f;
@@ -24,8 +28,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     
-    //variable for is tripleshot active
+    //variables for powerups
     private bool tripleShotActive = false;
+    private bool speedBoostActive = false;
 
     private SpawnManager _spawnManager;
 
@@ -58,9 +63,9 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-
+        
         transform.Translate(direction * _speed * Time.deltaTime);
-
+        
         if (transform.position.y >= playerYConstraint)
         {
             transform.position = new Vector3(transform.position.x, playerYConstraint, 0);
@@ -123,4 +128,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ActivateSpeedBoost(bool a)
+    {
+        if (a)
+        {
+            speedBoostActive = true;
+            _speed *= speedBoostModifier;
+            StartCoroutine("SpeedBoostPowerDownRoutine");
+        }
+        else
+        {
+            speedBoostActive = false;
+        }
+    }
+
+    IEnumerator SpeedBoostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(speedBoostPowerDownTime);
+        _speed /= speedBoostModifier;
+        speedBoostActive = false;
+    }
 }
