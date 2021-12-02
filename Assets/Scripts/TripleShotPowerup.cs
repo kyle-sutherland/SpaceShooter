@@ -7,15 +7,16 @@ public class TripleShotPowerup : MonoBehaviour
     [SerializeField]
     private float _speed = 8f;
 
-    private Vector3 spawnPosition;
-
     private SpawnManager _spawnManager;
 
     // Start is called before the first frame update
     void Start()
     {
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-        spawnPosition = _spawnManager.SetSpawnPosition();
+        if (_spawnManager == null)
+        {
+            Debug.LogError("_spawnManager is NULL");
+        }
     }
 
     // Update is called once per frame

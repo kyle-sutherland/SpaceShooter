@@ -42,18 +42,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 691316360440810820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a1bbb967ebd764dabd2a87ec938cf5, type: 3}
+  m_Script: {fileID: 11500000, guid: c017ded47d8b05640bf0acf75fe13165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 3.5
   playerXConstraint: 10
-  playerYConstraint: 6
+  playerYConstraint: 5.7
   _projectile: {fileID: 4055086673917061452, guid: 2f87063a9416f9d4ab1c242a2ada0d6c,
     type: 3}
   _tripleShot: {fileID: 4187979586308160737, guid: 4e7facdfe1c800c428e930e3672ed8f8,
     type: 3}
-  _projectileSpawnPosition: {x: 0, y: 0.75, z: 0}
-  _fireSpeed: 0.15
+  tripleShotPowerDownTime: 5
+  _projectileSpawnPosition: {x: 0, y: 0.7, z: 0}
+  _fireSpeed: 0.2
   _lives: 3
 --- !u!212 &3602965062053060875
 SpriteRenderer:

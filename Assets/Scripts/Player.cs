@@ -5,15 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 3.5f;
+    private float _speed = 5f;
     [SerializeField]
     public float playerXConstraint = 10f;
     [SerializeField]
-    public float playerYConstraint = 3.8f;
+    public float playerYConstraint = 5.7f;
     [SerializeField]
     private GameObject _projectile;
     [SerializeField]
     private GameObject _tripleShot;
+    [SerializeField]
+    private float tripleShotPowerDownTime = 5f;
     [SerializeField]
     private Vector3 _projectileSpawnPosition = new Vector3(0, 0.7f, 0);
     [SerializeField]
@@ -104,12 +106,21 @@ public class Player : MonoBehaviour
         if (a)
         {
             tripleShotActive = true;
+            StartCoroutine("TripleShotPowerDownRoutine");
         }
         else
         {
             tripleShotActive = false;
         }
-        
+    }
+
+    IEnumerator TripleShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(tripleShotPowerDownTime);
+        while(tripleShotActive)
+        {
+            tripleShotActive = false;
+        }
     }
 
 }

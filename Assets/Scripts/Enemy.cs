@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {    
     [SerializeField]
-    private float _speed = 6f;
+    private float _speed = 6.5f;
 
     private Vector3 spawnPosition;
 
@@ -15,6 +15,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        if (_spawnManager == null)
+        {
+            Debug.LogError("_spawnManager is NULL");
+        }
 
         spawnPosition = _spawnManager.SetSpawnPosition();
         Spawn();
@@ -25,7 +29,7 @@ public class Enemy : MonoBehaviour
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-        if(transform.position.y <= -9.1f)
+        if(transform.position.y <= -8f)
         {
             Spawn();
         }

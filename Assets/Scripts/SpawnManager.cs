@@ -7,7 +7,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private float enemySpawnTimer = 5f;
     [SerializeField]
-    private float powerupSpawnTimer = 5f;
+    private float powerupTimerLow = 6f;
+    [SerializeField]
+    private float powerupTimerHi = 10f;
     [SerializeField]
     private GameObject _spawnEnemy;
     [SerializeField]
@@ -48,9 +50,8 @@ public class SpawnManager : MonoBehaviour
             if (newSpawn.tag == "Powerup")
             {
                 newSpawn.transform.parent = _powerupContainer.transform;
-                
             }
-            yield return new WaitForSeconds(powerupSpawnTimer);
+            yield return new WaitForSeconds(Random.Range(powerupTimerLow, powerupTimerHi));
         }
     }
 
