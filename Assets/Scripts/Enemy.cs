@@ -57,8 +57,7 @@ public class Enemy : MonoBehaviour
             
             Destroy(other.gameObject);
             Destroy(this.gameObject);
-        }
-            
+        }       
     }
 
     public void Spawn()
@@ -66,5 +65,4 @@ public class Enemy : MonoBehaviour
         transform.position = spawnPosition;
         spawnPosition = _spawnManager.SetSpawnPosition();
     }
-
 }
