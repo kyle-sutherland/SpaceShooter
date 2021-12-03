@@ -5,7 +5,7 @@ using UnityEngine;
 public class Powerup : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 8f;
+    private float _speed = 4f;
     [SerializeField]
     private int powerupID;
 
@@ -45,7 +45,7 @@ public class Powerup : MonoBehaviour
                     Debug.Log("player collected SpeedBoost");
                     break;
                 case 2:
-                    //player.ActivateShield(true);
+                    player.ActivateShield(true);
                     Debug.Log("player Collected Shield");
                     break;
                 default:

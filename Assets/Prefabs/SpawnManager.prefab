@@ -53,7 +53,7 @@ MonoBehaviour:
   powerups:
   - {fileID: 5628319981124413212, guid: 1ab567a91067685408a6c09a382d78dd, type: 3}
   - {fileID: 9144313368817739409, guid: 6e84c36b0b1b36f438244927298d30e7, type: 3}
-  - {fileID: 0}
+  - {fileID: 7876232232907726960, guid: d1ec2511b2b30894cb5aa844754bdaa9, type: 3}
   _enemyContainer: {fileID: 6587531775648269039}
   _powerupContainer: {fileID: 8139381845826786897}
 --- !u!1 &6587531775648269039

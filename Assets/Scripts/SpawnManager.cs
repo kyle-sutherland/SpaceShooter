@@ -46,7 +46,7 @@ public class SpawnManager : MonoBehaviour
     {
         while (!stopSpawn)
         {
-            int randomPowerup = Random.Range(0, 2);
+            int randomPowerup = Random.Range(0, 3);
             GameObject newSpawn = Instantiate(powerups[randomPowerup], SetSpawnPosition(), Quaternion.identity);
             if (newSpawn.tag == "Powerup")
             {

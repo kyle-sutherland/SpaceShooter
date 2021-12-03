@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShot;
     [SerializeField]
+    private GameObject _shieldVisual;
+    [SerializeField]
     private float tripleShotPowerDownTime = 5f;
     [SerializeField]
     private float speedBoostModifier = 2f;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
     //variables for powerups
     private bool tripleShotActive = false;
     private bool speedBoostActive = false;
+    private bool shieldActive = false;
 
     private SpawnManager _spawnManager;
 
@@ -62,9 +65,17 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
         
-        transform.Translate(direction * _speed * Time.deltaTime);
+        if (speedBoostActive)
+        {
+            transform.Translate(direction * speedBoostModifier * _speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(direction * _speed * Time.deltaTime);
+        }
         
         if (transform.position.y >= playerYConstraint)
         {
@@ -97,12 +108,20 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        _lives--;
-        
-        if(_lives == 0)
+        if (!shieldActive)
         {
-            _spawnManager.OnPlayerDeath();
-            Destroy(this.gameObject);
+            _lives--;
+
+            if(_lives == 0)
+            {
+                _spawnManager.OnPlayerDeath();
+                Destroy(this.gameObject);
+            }
+        }
+        else
+        {
+            ActivateShield(false);
+            Debug.Log("shield hit. no more shield");
         }
     }
 
@@ -133,7 +152,6 @@ public class Player : MonoBehaviour
         if (a)
         {
             speedBoostActive = true;
-            _speed *= speedBoostModifier;
             StartCoroutine("SpeedBoostPowerDownRoutine");
         }
         else
@@ -145,7 +163,20 @@ public class Player : MonoBehaviour
     IEnumerator SpeedBoostPowerDownRoutine()
     {
         yield return new WaitForSeconds(speedBoostPowerDownTime);
-        _speed /= speedBoostModifier;
         speedBoostActive = false;
+    }
+
+    public void ActivateShield(bool a)
+    {
+        if (a)
+        {
+            shieldActive = true;
+            _shieldVisual.SetActive(true);
+        }
+        else
+        {
+            shieldActive = false;
+            _shieldVisual.SetActive(false);
+        }
     }
 }
